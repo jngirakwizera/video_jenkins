@@ -3,11 +3,10 @@ jenkins:
   remotingSecurity:
     enabled: true
   authorizationStrategy:
-    loggedInUsersCanDoAnything:
-      allowAnonymousRead: false
-  crumbIssuer:
-    standard:
-      excludeClientIPFromCrumb: false
+    globalMatrix:
+      permissions:
+        - "Overall/Administer:admin"
+        - "Overall/Read:authenticated"
   securityRealm:
     local:
       allowsSignup: false
@@ -17,7 +16,11 @@ jenkins:
         password: "testuser"
       - id: "admin"
         password: "admin"
-
+security:
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: triggeringUsersAuthorizationStrategy
 unclassified:
   location:
     url: http://localhost:8080/
@@ -27,3 +30,19 @@ tool:
     installations:
     - home: "git"
       name: "Default"
+jobs:
+  - script: >
+      pipelineJob('pipeline') {
+          definition {
+              cpsScm {
+                  scriptPath 'Jenkinsfile'
+                  scm {
+                    git {
+                        remote { url 'https://github.com/jngirakwizera/video-stream' }
+                        branch '*/main'
+                        extensions {}
+                    }
+                  }
+              }
+          }
+      }
