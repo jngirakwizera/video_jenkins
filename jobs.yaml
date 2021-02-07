@@ -1,0 +1,5 @@
+
+jobs:
+  - script: >
+      folder('testjobs')
+  - file: /var/jenkins_home/jobdsl/att_app.groovy

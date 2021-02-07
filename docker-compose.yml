@@ -1,0 +1,17 @@
+version: "2.2"
+services:
+  jenkins:
+    build: .
+    user: root
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "50000:50000"
+    volumes:
+      - jenkins_data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./jobs.yaml:/var/jenkins_home/jobs.yaml
+      - ./jobdsl:/var/jenkins_home/jobdsl/
+    container_name: jenkins-devkit
+volumes:
+  jenkins_data:
