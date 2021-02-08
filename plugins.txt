@@ -11,6 +11,7 @@ configuration-as-code:latest
 configuration-as-code-groovy:latest
 credentials:latest
 credentials-binding:latest
+nodejs:latest
 display-url-api
 docker-commons
 docker-workflow
