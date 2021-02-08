@@ -28,6 +28,7 @@ RUN mkdir -p /usr/local/android-sdk-linux && \
 
 # Set environment variable
 ENV ANDROID_HOME /usr/local/android-sdk-linux
+ENV PATH ${ANDROID_HOME}/emulator:$PATH
 ENV PATH ${ANDROID_HOME}/tools:$ANDROID_HOME/platform-tools:$PATH
 ENV PATH ${ANDROID_HOME}/tools/bin:$PATH
 
