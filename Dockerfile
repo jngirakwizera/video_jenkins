@@ -9,6 +9,8 @@ RUN apt-get update
 RUN apt-get -y install curl gnupg
 RUN curl -sL https://deb.nodesource.com/setup_11.x  | bash -
 RUN apt-get -y install nodejs
+RUN DEBIAN_FRONTEND=noninteractive apt-get install --yes pulseaudio-utils
+RUN apt-get install ffmpeg libsm6 libxext6  -y
 RUN npm install
 
 
